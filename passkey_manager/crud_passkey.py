@@ -11,6 +11,7 @@ class Crud:
             mydb.commit()
             
             print("sucess")
+            mydb.close()
         except Exception as e:
             mydb.rollback()
             print("Mysql Error :",e)
@@ -60,6 +61,22 @@ class Crud:
         except Exception as e:
             mydb.rollback()
             print("Mysql Error :",e)
+            
+    def display_passkey(self):
+        try:
+            self.cursor.execute("select * from passkey_tbl")
+            records = self.cursor.fetchall()
+            
+            for row in records:
+                print(row)
+                
+            self.cursor.close()
+            mydb.close()
+        except Exception as e:
+            print("Mysql Error :",e)
+            
+crud=Crud()
+crud.display_passkey()
         
         
 
